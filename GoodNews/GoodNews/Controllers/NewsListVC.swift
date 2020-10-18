@@ -13,7 +13,16 @@ class NewsListVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = .white
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationItem.title = "The Good News!"
+        self.title = "The Good News!"
+        
+        self.tableView.register(NewsCell.self, forCellReuseIdentifier: "articleCell")
+        self.tableView.rowHeight = 50
+        self.tableView.estimatedRowHeight = UITableView.automaticDimension
+        
         fetchArticles()
     }
     
@@ -59,10 +68,10 @@ class NewsListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? NewsCell else { return UITableViewCell() }
         guard let newsListVM = self.articlesListVM?.articleAtIndex(indexPath.row) else { return UITableViewCell() }
         cell.titleLabel.text = newsListVM.title
-        cell.descriptionLabal.text = newsListVM.description
+        cell.descriptionLabel.text = newsListVM.description
         return cell
     }
 
