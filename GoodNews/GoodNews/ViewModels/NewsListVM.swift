@@ -9,9 +9,7 @@ import Foundation
 
 struct ArticleListVM {
     let articles: [Articles]
-}
-
-extension ArticleListVM {
+    
     var numberOfSections: Int {
         return 1
     }
@@ -28,15 +26,11 @@ extension ArticleListVM {
 
 struct NewsListVM {
     private let article:Articles
-}
-
-extension NewsListVM {
+    
     init(_ article: Articles) {
         self.article = article
     }
-}
-
-extension NewsListVM {
+    
     var title:String {
         return self.article.title ?? ""
     }
